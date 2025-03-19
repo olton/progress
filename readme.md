@@ -45,14 +45,14 @@ Default values for `increment` is `1` and for `processMessage` is `''`.
 const ProgressOptions = {
     showStartMessage: false,
     startMessageColor: "gray",
-    startMessage: 'Starting {{total}} operations',
+    startMessage: '',
     total: 1,
     completed: 0,
     width: 30,
     mode: 'default', // default, dots, bar
     showCompleteMessage: false,
     completeMessageColor: "green",
-    completeMessage: 'Completed {{total}} operations in {{elapsed}}s',
+    completeMessage: '',
     barColor: "green",
     processMessage: '',
     processMessageColor: "gray",
@@ -64,10 +64,14 @@ const ProgressOptions = {
 The message shown when the progress starts. You can use the following replacers:
 - `{{total}}`: Total number of operations.
 
+For example: `Starting {{total}} operations`.
+
 ### completeMessage
 The message shown when the progress is completed. You can use the following replacers:
 - `{{total}}`: Total number of operations.
 - `{{elapsed}}`: Elapsed time in seconds.
+
+For example: `Completed {{total}} operations in {{elapsed}}s`.
 
 ### processMessage
 The message shown when the progress is updated. You can use the following replacers:
@@ -77,7 +81,10 @@ The message shown when the progress is updated. You can use the following replac
 - `{{percent}}`: Percentage of completion.
 - `{{rate}}`: Rate of completion.
 
-You can use the `processMessage` for `bar`, and `dots` modes. For `default` mode, the `processMessage` is not used.
+For example: `Completed {{completed}} of {{total}} in {{elapsed}}s ({{percent}}%)`.
+
+> [!NOTE]
+> You can use the `processMessage` for `bar`, and `dots` modes. For `default` mode, the `processMessage` is not used.
 
 ## Progress Modes
 
