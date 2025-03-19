@@ -18,7 +18,7 @@ export default class Progress {
         this.total = this.options.total || 1;
         this.completed = 0;
         this.start = Date.now();
-        
+        console.log(this.options.processMessage)
         this.startMessage();
         this.render();
     }
@@ -36,7 +36,11 @@ export default class Progress {
         if (!showStartMessage) {
             return;
         }
-        process.stdout.write(color(startMessageColor)(startMessage.replace(/{{total}}/g, this.total)));
+        
+        const message = startMessage
+            .replace(/{{total}}/g, this.total)
+        
+        process.stdout.write(color(startMessageColor)(message));
         process.stdout.write('\n');
     }
     
@@ -45,9 +49,14 @@ export default class Progress {
         if (!showCompleteMessage) {
             return;
         }
+        
         const elapsed = ((Date.now() - this.start) / 1000).toFixed(2);
+        const message = completeMessage
+            .replace(/{{total}}/g, this.total)
+            .replace(/{{elapsed}}/g, elapsed)
+        
         process.stdout.write('\n');
-        process.stdout.write(color(completeMessageColor)(completeMessage.replace(/{{total}}/g, this.total).replace(/{{elapsed}}/g, elapsed)));
+        process.stdout.write(color(completeMessageColor)(message));
         process.stdout.write('\n');
     }
     

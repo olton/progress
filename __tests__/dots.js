@@ -8,12 +8,12 @@ const progress = new Progress({
     startMessageColor: 'whiteBright',
     completeMessage: 'Process completed in {{elapsed}}s',
     barColor: "blue",
-    processMessage: '',
+    // processMessage: '',
     dotsType: 'arc',
 });
 
 for (let i = 0; i < 100; i++) {
     setTimeout(() => {
-        progress.process(1, `Step ${i + 1}`);
+        progress.process(1);
     }, i * 100);
 }

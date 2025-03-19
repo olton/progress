@@ -29,18 +29,28 @@ for (let i = 0; i < 100; i++) {
 }
 ```
 
+### process()
+
+The `process(increment, processMessage)` method updates the progress bar. You can call it multiple times to update the progress.
+
+```js
+progress.process();
+```
+
+Default values for `increment` is `1` and for `processMessage` is `''`.
+
 ## Options
 
 ```js
 const ProgressOptions = {
-    showStartMessage: true,
+    showStartMessage: false,
     startMessageColor: "gray",
     startMessage: 'Starting {{total}} operations',
     total: 1,
     completed: 0,
     width: 30,
-    mode: 'default', // default, dots
-    showCompleteMessage: true,
+    mode: 'default', // default, dots, bar
+    showCompleteMessage: false,
     completeMessageColor: "green",
     completeMessage: 'Completed {{total}} operations in {{elapsed}}s',
     barColor: "green",
@@ -49,3 +59,94 @@ const ProgressOptions = {
     dotsType: 'dots', // dots, clock
 }
 ```
+
+### startMessage
+The message shown when the progress starts. You can use the following replacers:
+- `{{total}}`: Total number of operations.
+
+### completeMessage
+The message shown when the progress is completed. You can use the following replacers:
+- `{{total}}`: Total number of operations.
+- `{{elapsed}}`: Elapsed time in seconds.
+
+### processMessage
+The message shown when the progress is updated. You can use the following replacers:
+- `{{total}}`: Total number of operations.
+- `{{completed}}`: Number of completed operations.
+- `{{elapsed}}`: Elapsed time in seconds.
+- `{{percent}}`: Percentage of completion.
+- `{{rate}}`: Rate of completion.
+
+You can use the `processMessage` for `bar`, and `dots` modes. For `default` mode, the `processMessage` is not used.
+
+## Progress Modes
+
+- `default`: Shows a progress bar with the percentage of completion.
+- `dots`: Shows a series of dots to indicate progress.
+- `bar`: Shows a progress bar with the percentage of completion.
+
+
+## Colors
+For `bar`, `processMessage`, `startMessage`, and `completeMessage` you can use different colors.
+
+You can use named colors - `black`, `red`, `green`, `yellow`, `blue`,
+`magenta`, `cyan`, `white`, `blackBright`, `gray`, `redBright`, `greenBright`,
+`yellowBright`, `blueBright`, `magentaBright`, `cyanBright`, `whiteBright`.
+
+Also, you can use hex colors. For example: `#ff0000`.
+
+### Default Mode
+
+Options for default mode:
+
+```js
+const options = {
+    mode: 'default',
+    total: 100,
+    completed: 0,
+    width: 30,
+    barColor: "green",
+    showStartMessage: true,
+    showCompleteMessage: true,
+}
+```
+
+### Dots Mode
+
+Options for dots mode:
+
+```js
+const options = {
+    mode: 'dots',
+    total: 100,
+    completed: 0,
+    dotsType: 'dots', // dots, clock
+    showStartMessage: true,
+    showCompleteMessage: true,
+    barColor: "green",
+}
+```
+
+For `processMessage` you can use replacers: 
+- `{{total}}`: Total number of operations.
+- `{{completed}}`: Number of completed operations.
+- `{{elapsed}}`: Elapsed time in seconds.
+- `{{percent}}`: Percentage of completion.
+- `{{rate}}`: Rate of completion.
+
+### Bar Mode
+Options for bar mode:
+
+```js
+const options = {
+    mode: 'bar',
+    total: 100,
+    completed: 0,
+    width: 30,
+    barColor: "green",
+    processMessageColor: "gray",
+    showStartMessage: true,
+    showCompleteMessage: true,
+}
+```
+

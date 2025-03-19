@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import { RenderOptions} from "../options.js";
 import process from 'node:process';
 import colorDef from '../color.js';
