@@ -19,5 +19,5 @@ export default function (state = {}) {
     process.stdout.write('\r');
     process.stdout.write(chalk.cyan(`[${chalk[color]('█'.repeat(filledWidth))}${' '.repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `));
     process.stdout.write(chalk.yellow(`(${completed}/${total}) `));
-    process.stdout.write(chalk.gray(`${elapsed}s elapsed, ${rate}s/test`));
+    process.stdout.write(chalk.gray(`${elapsed}s elapsed, ${rate}s/unit`));
 }
