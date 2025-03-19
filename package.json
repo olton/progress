@@ -1,0 +1,41 @@
+{
+  "name": "@olton/progress",
+  "version": "0.1.0",
+  "description": "Progress bar for JS/TS CLI (Node, Deno, Bun)",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olton/progress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olton/progress/issues",
+    "email": "serhii@pimenov.com.ua"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "progress",
+    "progress-bar",
+    "node",
+    "cli",
+    "cli-propgress",
+    "cli-propgress-bar"
+  ],
+  "author": {
+    "name": "Serhii Pimenov",
+    "email": "serhii@pimenov.com.ua",
+    "url": "https://pimenov.com.ua"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  },
+  "devDependencies": {
+    "@olton/esbuild-plugin-progress": "^0.3.0",
+    "esbuild": "^0.25.1",
+    "esbuild-plugin-replace": "^1.4.0"
+  }
+}
