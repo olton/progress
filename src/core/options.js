@@ -12,7 +12,7 @@ const ProgressOptions = {
     barColor: "green",
     processMessage: '',
     processMessageColor: "gray",
-    dotsType: 'dots', // dots, block, clock
+    dotsType: 'dots', // dots, clock
 }
 
 const RenderOptions = {
