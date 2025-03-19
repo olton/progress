@@ -3,7 +3,18 @@ import { RenderOptions} from "../options.js";
 import process from 'node:process';
 
 export default function (state = {}) {
-    const { percent, filledWidth, emptyWidth, elapsed, rate, completed, total, color = "green" } = Object.assign({}, RenderOptions, state);
+    const { 
+        percent, 
+        filledWidth, 
+        emptyWidth, 
+        elapsed, 
+        rate, 
+        completed, 
+        total, 
+        color = "green",
+        processMessage,
+        processMessageColor = "gray",
+    } = Object.assign({}, RenderOptions, state);
 
     process.stdout.write('\r');
     process.stdout.write(chalk.cyan(`[${chalk[color]('█'.repeat(filledWidth))}${' '.repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `));

@@ -1,12 +1,12 @@
 const ProgressOptions = {
-    showStartMessage: true,
+    showStartMessage: false,
     startMessageColor: "gray",
     startMessage: 'Starting {{total}} operations',
     total: 1,
     completed: 0,
     width: 30,
-    mode: 'default', // inline, block, dots
-    showCompleteMessage: true,
+    mode: 'default', // default, dots, bar
+    showCompleteMessage: false,
     completeMessageColor: "green",
     completeMessage: 'Completed {{total}} operations in {{elapsed}}s',
     barColor: "green",
