@@ -127,13 +127,6 @@ const options = {
 }
 ```
 
-For `processMessage` you can use replacers: 
-- `{{total}}`: Total number of operations.
-- `{{completed}}`: Number of completed operations.
-- `{{elapsed}}`: Elapsed time in seconds.
-- `{{percent}}`: Percentage of completion.
-- `{{rate}}`: Rate of completion.
-
 ### Bar Mode
 Options for bar mode:
 
