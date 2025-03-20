@@ -15,7 +15,7 @@ Progress is a simple command line tool to track your progress on various tasks.
 ## Installation
 
 ```bash
-npm install -g @olton/progress
+npm install @olton/progress
 ```
 
 ## Usage
