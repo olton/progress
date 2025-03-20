@@ -5,7 +5,7 @@ const progress = new Progress({
     width: 20,
     mode: 'bar',
     barColor: "#fff",
-    processMessage: 'lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    processMessage: '',
     processMessageColor: "yellow",
 });
 

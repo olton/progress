@@ -43,6 +43,13 @@ progress.process();
 
 Default values for `increment` is `1` and for `processMessage` is `''`.
 
+### reset()
+The `reset()` method resets the progress bar to the initial state. You can call it multiple times to reset the progress.
+
+```js
+progress.reset({...});
+```
+
 ## Options
 
 ```js
