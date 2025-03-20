@@ -4,8 +4,9 @@ const progress = new Progress({
     total: 100,
     width: 20,
     mode: 'bar',
-    barColor: "#81007f",
-    processMessage: '',
+    barColor: "#fff",
+    processMessage: 'lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    processMessageColor: "yellow",
 });
 
 for (let i = 0; i < 100; i++) {

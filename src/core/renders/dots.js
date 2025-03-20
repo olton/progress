@@ -4,10 +4,14 @@ import colorDef from '../color.js';
 
 const dots  = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 const clock = ["🕛", "🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚"]
+const moon  = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"]
+const earth = ["🌍", "🌍", "🌍", "🌎", "🌎", "🌎", "🌏", "🌏", "🌏"]
 
 const FRAMES = {
     dots,
     clock,
+    moon,
+    earth,
 }
 
 let index = 0;
@@ -42,6 +46,6 @@ export default function (state = {}) {
     
     const colors = colorDef({bar: color, process: processMessageColor});
     
-    process.stdout.write('\r');
+    process.stdout.write('\r'); 
     process.stdout.write(colors.bar(`${completed === total ? colors.complete('√') : frame} ${colors.process(message)} `));
 }

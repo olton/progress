@@ -43,9 +43,6 @@ Default values for `increment` is `1` and for `processMessage` is `''`.
 
 ```js
 const ProgressOptions = {
-    showStartMessage: false,
-    startMessageColor: "gray",
-    startMessage: '',
     total: 1,
     completed: 0,
     width: 30,
@@ -53,18 +50,13 @@ const ProgressOptions = {
     showCompleteMessage: false,
     completeMessageColor: "green",
     completeMessage: '',
+    completeMessagePosition: 'defailt', // default or inline, newline
     barColor: "green",
     processMessage: '',
     processMessageColor: "gray",
     dotsType: 'dots', // dots, clock
 }
 ```
-
-### startMessage
-The message shown when the progress starts. You can use the following replacers:
-- `{{total}}`: Total number of operations.
-
-For example: `Starting {{total}} operations`.
 
 ### completeMessage
 The message shown when the progress is completed. You can use the following replacers:

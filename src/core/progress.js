@@ -1,7 +1,7 @@
-import chalk from 'chalk';
 import process from 'node:process';
 import {ProgressOptions, RenderOptions} from "./options.js";
 import {color} from './color.js';
+import {clear, cursor} from './console.js';
 import defaultRender from "./renders/default.js";
 import dotsRender from "./renders/dots.js";
 import barRender from "./renders/bar.js";
@@ -18,8 +18,7 @@ export default class Progress {
         this.total = this.options.total || 1;
         this.completed = 0;
         this.start = Date.now();
-        console.log(this.options.processMessage)
-        this.startMessage();
+        cursor.hide();
         this.render();
     }
     
@@ -29,19 +28,6 @@ export default class Progress {
             this.options.processMessage = processMessage;
         } 
         this.render();
-    }
-    
-    startMessage(){
-        const { startMessageColor, startMessage, showStartMessage } = this.options;
-        if (!showStartMessage) {
-            return;
-        }
-        
-        const message = startMessage
-            .replace(/{{total}}/g, this.total)
-        
-        process.stdout.write(color(startMessageColor)(message));
-        process.stdout.write('\n');
     }
     
     completeMessage(){
@@ -55,7 +41,8 @@ export default class Progress {
             .replace(/{{total}}/g, this.total)
             .replace(/{{elapsed}}/g, elapsed)
         
-        process.stdout.write('\n');
+        process.stdout.write(["default", "inline"].includes(this.options.completeMessagePosition) ? '\r' : '\n');
+        clear(0, 1);
         process.stdout.write(color(completeMessageColor)(message));
         process.stdout.write('\n');
     }
@@ -86,10 +73,11 @@ export default class Progress {
     render(){
         const state = this.calculate();
         const render = RENDERS[this.options.mode] || defaultRender;
-        
+ 
         render(state);
         
         if (this.completed >= this.options.total) {
+            cursor.show();
             this.completeMessage();
         }
     }

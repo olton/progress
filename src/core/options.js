@@ -1,7 +1,4 @@
 const ProgressOptions = {
-    showStartMessage: false,
-    startMessageColor: "gray",
-    startMessage: '',
     total: 1,
     completed: 0,
     width: 30,
@@ -9,6 +6,7 @@ const ProgressOptions = {
     showCompleteMessage: false,
     completeMessageColor: "green",
     completeMessage: '',
+    completeMessagePosition: 'default', // default, newline
     barColor: "green",
     processMessage: '',
     processMessageColor: "gray",

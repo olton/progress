@@ -12,6 +12,8 @@
     "email": "serhii@pimenov.com.ua"
   },
   "scripts": {
+    "pub": "npm publish --access public",
+    "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js --external:chalk --minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
