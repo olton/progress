@@ -1,6 +1,10 @@
+<div align="center">
+
 # Progress
 
 Progress is a simple command line tool to track your progress on various tasks. 
+
+</div>
 
 <div align="center">
 
