@@ -1,7 +1,7 @@
 import process from 'node:process';
 import {ProgressOptions, RenderOptions} from "./options.js";
 import {color} from './color.js';
-import {clear, cursor} from './console.js';
+import {clear} from './console.js';
 import defaultRender from "./renders/default.js";
 import dotsRender from "./renders/dots.js";
 import barRender from "./renders/bar.js";
@@ -13,17 +13,35 @@ const RENDERS = {
 }
 
 export default class Progress {
+    total = 0;
+    completed = 0;
+    start = 0;
+    options = {};
+    terminal = null
+    
     constructor(options = {}) {
-        this.reset(options)
+        this.options = Object.assign({}, ProgressOptions, options);
+        this.terminal = process.stderr.isTTY
+            ? process.stderr
+            : (process.stdout.isTTY ? process.stdout : undefined);
+        this.setup()
+    }
+
+    cursor(mode = true){
+        mode ? this.terminal.write('\u001B[?25h') : this.terminal.write('\u001B[?25l')
+    }
+    
+    setup(){
+        this.total = Math.abs(this.options.total || 1);
+        this.completed = 0;
+        this.start = Date.now();
+        this.cursor(false);
+        this.render();
     }
     
     reset(options = {}) {
-        this.options = Object.assign({}, ProgressOptions, options);
-        this.total = this.options.total || 1;
-        this.completed = 0;
-        this.start = Date.now();
-        cursor.hide();
-        this.render();
+        this.options = Object.assign({}, this.options, options);
+        this.setup()
     }
     
     process(step = 1, processMessage = '') {
@@ -41,14 +59,13 @@ export default class Progress {
         }
         
         const elapsed = ((Date.now() - this.start) / 1000).toFixed(2);
-        const message = "[✓] " + completeMessage
+        const message = completeMessage
             .replace(/{{total}}/g, this.total)
             .replace(/{{elapsed}}/g, elapsed)
         
         process.stdout.write(["default", "inline"].includes(this.options.completeMessagePosition) ? '\r' : '\n');
-        clear(0, 1);
+        clear(this.terminal, 0, 1);
         process.stdout.write(color(completeMessageColor)(message));
-        process.stdout.write('\n');
     }
     
     calculate(){
@@ -81,7 +98,7 @@ export default class Progress {
         render(state);
         
         if (this.completed >= this.options.total) {
-            cursor.show();
+            this.cursor(true);
             this.completeMessage();
         }
     }
