@@ -132,9 +132,21 @@ const options = {
 
 #### Dots Types
 - `dots`: Shows a series of dots to indicate progress.
+```js
+["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+```
 - `clock`: Shows a clock to indicate progress.
+```js
+["🕛", "🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚"]
+```
 - `moon`: Shows a moon to indicate progress.
+```js
+["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"]
+```
 - `earth`: Shows an earth to indicate progress.
+```js
+["🌍", "🌍", "🌍", "🌎", "🌎", "🌎", "🌏", "🌏", "🌏"]
+```
 
 ### Bar Mode
 Options for bar mode:
