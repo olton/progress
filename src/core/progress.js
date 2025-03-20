@@ -14,6 +14,10 @@ const RENDERS = {
 
 export default class Progress {
     constructor(options = {}) {
+        this.reset(options)
+    }
+    
+    reset(options = {}) {
         this.options = Object.assign({}, ProgressOptions, options);
         this.total = this.options.total || 1;
         this.completed = 0;
@@ -37,7 +41,7 @@ export default class Progress {
         }
         
         const elapsed = ((Date.now() - this.start) / 1000).toFixed(2);
-        const message = completeMessage
+        const message = "[✓] " + completeMessage
             .replace(/{{total}}/g, this.total)
             .replace(/{{elapsed}}/g, elapsed)
         

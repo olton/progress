@@ -123,12 +123,18 @@ const options = {
     mode: 'dots',
     total: 100,
     completed: 0,
-    dotsType: 'dots', // dots, clock
+    dotsType: 'dots', // dots, clock, moon, earth
     showStartMessage: true,
     showCompleteMessage: true,
     barColor: "green",
 }
 ```
+
+#### Dots Types
+- `dots`: Shows a series of dots to indicate progress.
+- `clock`: Shows a clock to indicate progress.
+- `moon`: Shows a moon to indicate progress.
+- `earth`: Shows an earth to indicate progress.
 
 ### Bar Mode
 Options for bar mode:
