@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { ProgressOptions, RenderOptions } from './options.js'
 import { color } from './color.js'
-import { clear } from './console.js'
+import { clear, getCursorPosSync } from './console.js'
 import defaultRender from './renders/default.js'
 import dotsRender from './renders/dots.js'
 import barRender from './renders/bar.js'
@@ -18,6 +18,7 @@ export default class Progress {
   start = 0
   options = {}
   terminal = null
+  position = { cols: 0, rows: 0 }
 
   constructor (options = {}) {
     this.options = Object.assign({}, ProgressOptions, options)
@@ -27,16 +28,28 @@ export default class Progress {
     this.setup()
   }
 
+  destroy () {
+    this.cursor(true)
+  }
+  
   cursor (mode = true) {
     mode ? this.terminal.write('\u001B[?25h') : this.terminal.write('\u001B[?25l')
   }
 
+  hideCursor () {
+    this.cursor(false)
+  }
+  
+  showCursor () {
+    this.cursor(true)
+  }
+  
   setup () {
     this.total = Math.abs(this.options.total || 1)
     this.completed = 0
     this.start = Date.now()
     this.cursor(false)
-    this.render()
+    if (this.options.render) { this.render() }
   }
 
   reset (options = {}) {
@@ -44,16 +57,25 @@ export default class Progress {
     this.setup()
   }
 
-  process (step = 1, processMessage = '') {
+  init (msg) {
+    if (msg && typeof msg === 'string') {
+      this.options.processMessage = msg
+    }
+    this.position = { x: 0, y: 0 }
+    this.render()
+  }
+  
+  process (step = 1, msg = '') {
     this.completed += step
-    if (processMessage) {
-      this.options.processMessage = processMessage
+    if (msg) {
+      this.options.processMessage = msg
     }
     this.render()
   }
 
   completeMessage () {
     const { completeMessageColor, completeMessage, showCompleteMessage } = this.options
+    this.showCursor()
     if (!showCompleteMessage) {
       return
     }
@@ -87,7 +109,8 @@ export default class Progress {
       color: this.options.barColor,
       processMessage: this.options.processMessage,
       processMessageColor: this.options.processMessageColor,
-      type: this.options.dotsType
+      type: this.options.dotsType,
+      unitName: this.options.unitName,
     })
   }
 
@@ -98,7 +121,6 @@ export default class Progress {
     render(state)
 
     if (this.completed >= this.options.total) {
-      this.cursor(true)
       this.completeMessage()
     }
   }

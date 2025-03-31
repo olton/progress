@@ -10,7 +10,8 @@ const ProgressOptions = {
   barColor: 'green',
   processMessage: '',
   processMessageColor: 'gray',
-  dotsType: 'dots' // dots, clock
+  dotsType: 'dots', // dots, clock,
+  unitName: 'unit',
 }
 
 const RenderOptions = {
@@ -20,7 +21,8 @@ const RenderOptions = {
   elapsed: 0,
   rate: 0,
   completed: 0,
-  total: 1
+  total: 1,
+  unitName: 'unit',
 }
 
 export {

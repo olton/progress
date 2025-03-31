@@ -46,7 +46,7 @@ export default function (state = {}) {
 
   const colors = colorDef({ bar: color, process: processMessageColor })
 
-  process.stdout.write('\r')
-  process.stdout.clearLine(0)
+  process.stdout.write("\r")
   process.stdout.write(colors.bar(`${completed === total ? colors.complete('√') : frame} ${colors.process(message)} `))
+  process.stdout.clearLine(1)
 }
