@@ -2,6 +2,12 @@
 
 # Progress
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![NPM Version](https://img.shields.io/npm/v/%40olton%2Fprogress)
+![Static Badge](https://img.shields.io/badge/dependencies-none-green)
+
+
+
 Progress is a simple command line tool to track your progress on various tasks. 
 
 </div>
@@ -170,4 +176,14 @@ const options = {
     showCompleteMessage: true,
 }
 ```
+
+---
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+## Code Standards
+
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
