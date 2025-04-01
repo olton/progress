@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { ProgressOptions, RenderOptions } from './options.js'
 import { color } from './color.js'
-import { clear, getCursorPosSync } from './console.js'
+import { clearLine, cursor, getCursorPos } from './console.js'
 import defaultRender from './renders/default.js'
 import dotsRender from './renders/dots.js'
 import barRender from './renders/bar.js'
@@ -12,44 +12,35 @@ const RENDERS = {
   bar: barRender
 }
 
+const repeat = (str, count) => {
+  let result = ''
+  for (let i = 0; i < count; i++) {
+    result += str
+  }
+  return result
+}
+
 export default class Progress {
   total = 0
   completed = 0
   start = 0
   options = {}
-  terminal = null
-  position = { cols: 0, rows: 0 }
+  position = null
 
   constructor (options = {}) {
     this.options = Object.assign({}, ProgressOptions, options)
-    this.terminal = process.stderr.isTTY
-      ? process.stderr
-      : (process.stdout.isTTY ? process.stdout : undefined)
     this.setup()
   }
 
   destroy () {
-    this.cursor(true)
-  }
-  
-  cursor (mode = true) {
-    mode ? this.terminal.write('\u001B[?25h') : this.terminal.write('\u001B[?25l')
-  }
-
-  hideCursor () {
-    this.cursor(false)
-  }
-  
-  showCursor () {
-    this.cursor(true)
+    cursor(true)
   }
   
   setup () {
     this.total = Math.abs(this.options.total || 1)
     this.completed = 0
     this.start = Date.now()
-    this.cursor(false)
-    if (this.options.render) { this.render() }
+    cursor( this.options.cursor )
   }
 
   reset (options = {}) {
@@ -57,12 +48,21 @@ export default class Progress {
     this.setup()
   }
 
-  init (msg) {
+  async init (msg) {
     if (msg && typeof msg === 'string') {
       this.options.processMessage = msg
     }
-    this.position = { x: 0, y: 0 }
+    if (this.options.spaceBefore) {
+      process.stdout.write(repeat('\n', this.options.spaceBefore))
+    }
+    const cur = await getCursorPos()
+    this.position = { ...cur }
     this.render()
+    if (this.options.spaceAfter) {
+      process.stdout.write(repeat('\n', this.options.spaceAfter + 1))
+    } else {
+      process.stdout.write('\n')
+    }
   }
   
   process (step = 1, msg = '') {
@@ -75,7 +75,9 @@ export default class Progress {
 
   completeMessage () {
     const { completeMessageColor, completeMessage, showCompleteMessage } = this.options
-    this.showCursor()
+
+    cursor(true)
+    
     if (!showCompleteMessage) {
       return
     }
@@ -85,8 +87,13 @@ export default class Progress {
       .replace(/{{total}}/g, this.total)
       .replace(/{{elapsed}}/g, elapsed)
 
-    process.stdout.write(['default', 'inline'].includes(this.options.completeMessagePosition) ? '\r' : '\n')
-    clear(this.terminal, 0, 1)
+    if (['default', 'inline'].includes(this.options.completeMessagePosition)) {
+      process.stdout.write('\r')
+    } else {
+      process.stdout.write('\n')
+    }
+
+    clearLine(process.stdout, 0)
     process.stdout.write(color(completeMessageColor)(message))
   }
 
@@ -118,6 +125,9 @@ export default class Progress {
     const state = this.calculate()
     const render = RENDERS[this.options.mode] || defaultRender
 
+    if (this.position) {
+      process.stdout.cursorTo(+this.position.x - 1, +this.position.y - 1)
+    }
     render(state)
 
     if (this.completed >= this.options.total) {

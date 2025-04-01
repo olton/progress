@@ -12,6 +12,9 @@ const ProgressOptions = {
   processMessageColor: 'gray',
   dotsType: 'dots', // dots, clock,
   unitName: 'unit',
+  cursor: true,
+  spaceBefore: 0,
+  spaceAfter: 0,
 }
 
 const RenderOptions = {

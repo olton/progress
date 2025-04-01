@@ -8,10 +8,21 @@ const progress = new Progress({
   showCompleteMessage: true,
   barColor: 'blue',
   processMessage: 'Lorem ipsum dollor sit amet, consectetur adipiscing elit. {{percent}}% completed',
-  dotsType: 'earth'
+  dotsType: 'earth',
+  cursor: false,
+  spaceBefore: 1,
+  spaceAfter: 1,
 })
 
-progress.init()
+console.log('Processing...')
+console.log('Processing...')
+
+await progress.init()
+
+console.log('Processing...')
+console.log('Processing...')
+console.log('Processing...')
+console.log('Processing...')
 
 for (let i = 0; i < 100; i++) {
   setTimeout(() => {
