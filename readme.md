@@ -212,6 +212,18 @@ const activity = new Activity({
 activity.run("Processing...", 5000)
 ```
 
+## Method Init()
+The `init()` method initializes the progress or activity on specified position in the terminal. 
+This method is async and returns a promise. 
+
+```js
+const progress = new Progress({...});
+await progress.init()
+```
+
+When you call `process()` or `activity.run()` the progress or activity will be shown on the initialed position in the terminal.
+This allows you to use `console.log` (or other console methods) in the execution process, the progress will be displayed at the saved position.
+
 ---
 ## License
 
