@@ -1,4 +1,4 @@
-const ProgressOptions = {
+export default {
   total: 1,
   completed: 0,
   width: 30,
@@ -10,25 +10,9 @@ const ProgressOptions = {
   barColor: 'green',
   processMessage: '',
   processMessageColor: 'gray',
-  dotsType: 'dots', // dots, clock,
+  dotsType: 'dots', // dots, clock, earth, moon
   unitName: 'unit',
   cursor: true,
   spaceBefore: 0,
   spaceAfter: 0,
-}
-
-const RenderOptions = {
-  percent: 0,
-  filledWidth: 0,
-  emptyWidth: 0,
-  elapsed: 0,
-  rate: 0,
-  completed: 0,
-  total: 1,
-  unitName: 'unit',
-}
-
-export {
-  ProgressOptions,
-  RenderOptions
 }

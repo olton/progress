@@ -1,6 +1,6 @@
-import { RenderOptions } from '../options.js'
+import RenderOptions from '../options/render.js'
 import process from 'node:process'
-import colorDef from '../color.js'
+import colorDef from '../helpers/color.js'
 
 export default function (state = {}) {
   const {

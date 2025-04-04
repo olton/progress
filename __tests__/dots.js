@@ -8,7 +8,7 @@ const progress = new Progress({
   showCompleteMessage: true,
   barColor: 'blue',
   processMessage: 'Lorem ipsum dollor sit amet, consectetur adipiscing elit. {{percent}}% completed',
-  dotsType: 'earth',
+  dotsType: 'line',
   cursor: false,
   spaceBefore: 1,
   spaceAfter: 1,

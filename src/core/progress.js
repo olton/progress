@@ -1,23 +1,17 @@
 import process from 'node:process'
-import { ProgressOptions, RenderOptions } from './options.js'
-import { color } from './color.js'
-import { clearLine, cursor, getCursorPos } from './console.js'
-import defaultRender from './renders/default.js'
-import dotsRender from './renders/dots.js'
-import barRender from './renders/bar.js'
+import ProgressOptions from '../options/progress.js'
+import RenderOptions from '../options/render.js'
+import { color } from '../helpers/color.js'
+import { clearLine, cursor, getCursorPos } from '../helpers/console.js'
+import defaultRender from '../renders/default.js'
+import dotsRender from '../renders/dots.js'
+import barRender from '../renders/bar.js'
+import repeat from '../helpers/repeat.js'
 
 const RENDERS = {
   default: defaultRender,
   dots: dotsRender,
   bar: barRender
-}
-
-const repeat = (str, count) => {
-  let result = ''
-  for (let i = 0; i < count; i++) {
-    result += str
-  }
-  return result
 }
 
 export default class Progress {
@@ -48,18 +42,15 @@ export default class Progress {
     this.setup()
   }
 
-  async init (msg) {
-    if (msg && typeof msg === 'string') {
-      this.options.processMessage = msg
-    }
-    if (this.options.spaceBefore) {
-      process.stdout.write(repeat('\n', this.options.spaceBefore))
-    }
+  async init (msg = '') {
+    const o = this.options
+    if (msg) { o.processMessage = msg }
+    if (o.spaceBefore) { process.stdout.write(repeat('\n', o.spaceBefore)) }
     const cur = await getCursorPos()
     this.position = { ...cur }
     this.render()
-    if (this.options.spaceAfter) {
-      process.stdout.write(repeat('\n', this.options.spaceAfter + 1))
+    if (o.spaceAfter) {
+      process.stdout.write(repeat('\n', o.spaceAfter + 1))
     } else {
       process.stdout.write('\n')
     }

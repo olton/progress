@@ -1,18 +1,16 @@
-import { RenderOptions } from '../options.js'
+import RenderOptions from '../options/render.js'
 import process from 'node:process'
-import colorDef from '../color.js'
-
-const dots = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
-const clock = ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚']
-const moon = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘']
-const earth = ['🌍', '🌍', '🌍', '🌎', '🌎', '🌎', '🌏', '🌏', '🌏']
+import colorDef from '../helpers/color.js'
+import { dots, clock, moon, earth, line } from "../helpers/frames.js"
 
 const FRAMES = {
   dots,
   clock,
   moon,
-  earth
+  earth,
+  line, 
 }
+
 
 let index = 0
 

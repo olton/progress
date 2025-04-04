@@ -1,5 +1,16 @@
-import { ProgressOptions } from './core/options.js'
+import ProgressOptions from './options/progress.js'
 import Progress from './core/progress.js'
-import {clearConsole, showCursor, hideCursor, cursor} from './core/console.js'
+import ActivityOptions from './options/activity.js'
+import Activity from './core/activity.js'
+import { clearConsole, showCursor, hideCursor, cursor } from './helpers/console.js'
 
-export { Progress, ProgressOptions, clearConsole, cursor, showCursor, hideCursor }
+export { 
+  Progress, 
+  ProgressOptions,
+  Activity,
+  ActivityOptions,
+  clearConsole, 
+  cursor, 
+  showCursor, 
+  hideCursor 
+}

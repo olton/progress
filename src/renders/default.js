@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { RenderOptions } from '../options.js'
+import RenderOptions from '../options/render.js'
 import process from 'node:process'
 
 export default function (state = {}) {
