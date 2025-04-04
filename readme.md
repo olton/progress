@@ -8,7 +8,7 @@
 
 
 
-Progress is a simple command line tool to track your progress on various tasks. 
+Progress is a simple command line tool to track your progress on various tasks. You can use `ProgressBar` or `Activity` to show the progress of your tasks in the terminal.
 
 </div>
 
@@ -24,7 +24,7 @@ Progress is a simple command line tool to track your progress on various tasks.
 npm install @olton/progress
 ```
 
-## Usage
+## ProgressBar Usage 
 
 ```js
 import { Progress } from "@olton/progress";
@@ -136,7 +136,7 @@ const options = {
     mode: 'dots',
     total: 100,
     completed: 0,
-    dotsType: 'dots', // dots, clock, moon, earth
+    dotsType: 'dots', // dots, clock, moon, earth, line
     showStartMessage: true,
     showCompleteMessage: true,
     barColor: "green",
@@ -160,6 +160,10 @@ const options = {
 ```js
 ["🌍", "🌍", "🌍", "🌎", "🌎", "🌎", "🌏", "🌏", "🌏"]
 ```
+- `line`: Shows a line to indicate progress.
+```js
+['|', '/', '─', '\\', '|', '/', '─', '\\', '|']
+```
 
 ### Bar Mode
 Options for bar mode:
@@ -175,6 +179,37 @@ const options = {
     showStartMessage: true,
     showCompleteMessage: true,
 }
+```
+
+## Activity Usage
+
+```js
+import { Activity } from "@olton/progress";
+
+const activity = new Activity({
+  color: '#fff',
+  message: '',
+  messageColor: 'yellow',
+  type: 'dots',
+})
+
+for (let i = 0; i < 100; i++) {
+  setTimeout(() => {
+    progress.process(`Step ${i + 1}`)
+  }, i * 100)
+}
+```
+
+```js
+const activity = new Activity({
+  color: '#fff',
+  message: '',
+  messageColor: 'yellow',
+  type: 'dots',
+})
+
+// Run activity and stop after 5 seconds
+activity.run("Processing...", 5000)
 ```
 
 ---
