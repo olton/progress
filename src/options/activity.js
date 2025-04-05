@@ -5,6 +5,8 @@ export default {
   spaceAfter: 0,
   color: 'green',
   messageColor: 'white',
+  completeMessage: '',
+  completeMessageColor: 'whiteBright',
 }
 
 

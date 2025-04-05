@@ -1,9 +1,9 @@
-import { cursor, getCursorPos } from '../helpers/console.js'
+import { clearLine, cursor, getCursorPos } from '../helpers/console.js'
 import ActivityOptions from '../options/activity.js'
 import process from 'node:process'
 import repeat from '../helpers/repeat.js'
 import { dots, moon, clock, earth } from '../helpers/frames.js'
-import colorDef from '../helpers/color.js'
+import colorDef, { color } from '../helpers/color.js'
 
 const FRAMES = {
     dots,
@@ -94,5 +94,23 @@ export default class Activity {
         clearInterval(this.interval)
         this.interval = null
         cursor(true)
+        this.completeMessage()
+    }
+
+    completeMessage () {
+        const { completeMessageColor, completeMessage } = this.options
+
+        if (!completeMessage) {
+            return
+        }
+
+        const elapsed = ((Date.now() - this.start) / 1000).toFixed(2)
+        const message = completeMessage
+          .replace(/{{elapsed}}/g, elapsed)
+
+        process.stdout.write('\r')
+
+        clearLine(process.stdout, 0)
+        process.stdout.write(color(completeMessageColor)(message))
     }
 }
