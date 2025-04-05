@@ -6,7 +6,8 @@ const progress = new Progress({
   mode: 'bar',
   barColor: '#fff',
   processMessage: '',
-  processMessageColor: 'yellow'
+  processMessageColor: 'yellow',
+  completeMessage: 'Process completed in {{elapsed}}s',
 })
 
 for (let i = 0; i < 100; i++) {

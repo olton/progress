@@ -65,11 +65,11 @@ export default class Progress {
   }
 
   completeMessage () {
-    const { completeMessageColor, completeMessage, showCompleteMessage } = this.options
+    const { completeMessageColor, completeMessage } = this.options
 
     cursor(true)
     
-    if (!showCompleteMessage) {
+    if (!completeMessage) {
       return
     }
 

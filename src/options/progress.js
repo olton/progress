@@ -3,7 +3,6 @@ export default {
   completed: 0,
   width: 30,
   mode: 'default', // default, dots, bar
-  showCompleteMessage: false,
   completeMessageColor: 'green',
   completeMessage: '',
   completeMessagePosition: 'default', // default, newline
