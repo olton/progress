@@ -89,12 +89,12 @@ export default class Progress {
   }
 
   calculate () {
-    const percent = Math.round((this.completed / this.total) * 100)
-    const filledWidth = Math.round((this.completed / this.total) * this.options.width)
+    const percent = this.total ? Math.round((this.completed / this.total) * 100) : 0
+    const filledWidth = this.total ? Math.round((this.completed / this.total) * this.options.width) : 0
     const emptyWidth = this.options.width - filledWidth
 
     const elapsed = ((Date.now() - this.start) / 1000).toFixed(1)
-    const rate = this.completed > 0 ? (elapsed / this.completed).toFixed(2) : '0.00'
+    const rate = this.completed ? (elapsed / this.completed).toFixed(2) : '0.00'
 
     return Object.assign({}, RenderOptions, {
       percent,

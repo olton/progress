@@ -1,5 +1,5 @@
 export default {
-  total: 1,
+  total: 0,
   completed: 0,
   width: 30,
   mode: 'default', // default, dots, bar

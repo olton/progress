@@ -90,19 +90,18 @@ export default class Activity {
         }
     }
     
-    stop () {
+    stop (msg) {
         clearInterval(this.interval)
         this.interval = null
         cursor(true)
-        this.completeMessage()
+        this.completeMessage(msg)
     }
 
-    completeMessage () {
-        const { completeMessageColor, completeMessage } = this.options
+    completeMessage (msg) {
+        let { completeMessageColor, completeMessage } = this.options
 
-        if (!completeMessage) {
-            return
-        }
+        if (msg) { completeMessage = msg }        
+        if (!completeMessage) { return }
 
         const elapsed = ((Date.now() - this.start) / 1000).toFixed(2)
         const message = completeMessage
