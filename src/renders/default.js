@@ -16,7 +16,7 @@ export default function (state = {}) {
   } = Object.assign({}, RenderOptions, state)
 
   process.stdout.write('\r')
-  process.stdout.write(term(`[${term('█'.repeat(filledWidth), {color})}${' '.repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `, {color: 'cyan'}))
+  process.stdout.write(term(`[${'█'.repeat(filledWidth)}${' '.repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `, {color}))
   process.stdout.write(term(`(${completed}/${total}) `, {color: 'yellow'}))
   process.stdout.write(term(`${elapsed}s elapsed, ${rate}s/${unitName}`, {color: 'gray'}))
 }
