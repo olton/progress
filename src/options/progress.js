@@ -14,4 +14,5 @@ export default {
   cursor: true,
   spaceBefore: 0,
   spaceAfter: 0,
+  barSymbol: '█',
 }

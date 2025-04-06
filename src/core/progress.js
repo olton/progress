@@ -1,12 +1,11 @@
 import process from 'node:process'
 import ProgressOptions from '../options/progress.js'
 import RenderOptions from '../options/render.js'
-import { color } from '../helpers/color.js'
-import { clearLine, cursor, getCursorPos } from '../helpers/console.js'
 import defaultRender from '../renders/default.js'
 import dotsRender from '../renders/dots.js'
 import barRender from '../renders/bar.js'
 import repeat from '../helpers/repeat.js'
+import { Cursor, term, Screen } from "@olton/terminal"
 
 const RENDERS = {
   default: defaultRender,
@@ -20,6 +19,7 @@ export default class Progress {
   start = 0
   options = {}
   position = null
+  cursor = null
 
   constructor (options = {}) {
     this.options = Object.assign({}, ProgressOptions, options)
@@ -27,14 +27,16 @@ export default class Progress {
   }
 
   destroy () {
-    cursor(true)
+    Cursor.show()
   }
   
   setup () {
     this.total = Math.abs(this.options.total || 1)
     this.completed = 0
     this.start = Date.now()
-    cursor( this.options.cursor )
+    if (this.options.cursor === false) {
+      Cursor.hide()
+    }
   }
 
   reset (options = {}) {
@@ -46,7 +48,7 @@ export default class Progress {
     const o = this.options
     if (msg) { o.processMessage = msg }
     if (o.spaceBefore) { process.stdout.write(repeat('\n', o.spaceBefore)) }
-    const cur = await getCursorPos()
+    const cur = await Cursor.getPos()
     this.position = { ...cur }
     this.render()
     if (o.spaceAfter) {
@@ -67,7 +69,7 @@ export default class Progress {
   completeMessage () {
     const { completeMessageColor, completeMessage } = this.options
 
-    cursor(true)
+    Cursor.show()
     
     if (!completeMessage) {
       return
@@ -84,8 +86,8 @@ export default class Progress {
       process.stdout.write('\n')
     }
 
-    clearLine(process.stdout, 0)
-    process.stdout.write(color(completeMessageColor)(message))
+    Screen.clearLine()
+    process.stdout.write(term(message, {color: completeMessageColor}))
   }
 
   calculate () {
@@ -109,6 +111,7 @@ export default class Progress {
       processMessageColor: this.options.processMessageColor,
       type: this.options.dotsType,
       unitName: this.options.unitName,
+      barSymbol: this.options.barSymbol,
     })
   }
 
@@ -117,7 +120,8 @@ export default class Progress {
     const render = RENDERS[this.options.mode] || defaultRender
 
     if (this.position) {
-      process.stdout.cursorTo(+this.position.x - 1, +this.position.y - 1)
+      Cursor.to(+this.position.x - 1, +this.position.y - 1)
+      // process.stdout.cursorTo(+this.position.x - 1, +this.position.y - 1)
     }
     render(state)
 

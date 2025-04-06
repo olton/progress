@@ -1,7 +1,7 @@
 import RenderOptions from '../options/render.js'
 import process from 'node:process'
-import colorDef from '../helpers/color.js'
 import { dots, clock, moon, earth, line } from "../helpers/frames.js"
+import { term, Screen } from '@olton/terminal'
 
 const FRAMES = {
   dots,
@@ -10,7 +10,6 @@ const FRAMES = {
   earth,
   line, 
 }
-
 
 let index = 0
 
@@ -42,9 +41,10 @@ export default function (state = {}) {
     .replace(/{{elapsed}}/g, elapsed)
     .replace(/{{rate}}/g, rate)
 
-  const colors = colorDef({ bar: color, process: processMessageColor })
+  // const colors = colorDef({ bar: color, process: processMessageColor })
 
   process.stdout.write("\r")
-  process.stdout.write(colors.bar(`${completed === total ? colors.complete('√') : frame} ${colors.process(message)} `))
-  process.stdout.clearLine(1)
+  process.stdout.write(term(`${completed === total ? term('√', {color: 'green'}) : frame} ${term(message, {color: processMessageColor})} `, { color }))
+  Screen.clearRight()
+  // process.stdout.clearLine(1)
 }

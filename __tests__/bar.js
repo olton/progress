@@ -8,6 +8,8 @@ const progress = new Progress({
   processMessage: '',
   processMessageColor: 'yellow',
   completeMessage: 'Process completed in {{elapsed}}s',
+  cursor: false,
+  barSymbol: '◼',
 })
 
 for (let i = 0; i < 100; i++) {

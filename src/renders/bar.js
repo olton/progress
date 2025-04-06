@@ -1,6 +1,6 @@
 import RenderOptions from '../options/render.js'
 import process from 'node:process'
-import colorDef from '../helpers/color.js'
+import { term } from '@olton/terminal'
 
 export default function (state = {}) {
   const {
@@ -13,7 +13,8 @@ export default function (state = {}) {
     total,
     color = 'green',
     processMessage,
-    processMessageColor = 'gray'
+    processMessageColor = 'gray',
+    barSymbol = '◼',
   } = Object.assign({}, RenderOptions, state)
 
   const message = processMessage
@@ -23,8 +24,6 @@ export default function (state = {}) {
     .replace(/{{elapsed}}/g, elapsed)
     .replace(/{{rate}}/g, rate)
 
-  const colors = colorDef({ bar: color, process: processMessageColor })
-
   process.stdout.write('\r')
-  process.stdout.write(colors.process(`${colors.bar('[')}${colors.bar('◼'.repeat(filledWidth))}${' '.repeat(emptyWidth > 0 ? emptyWidth : 0)}${colors.bar(']')} ${message}`))
+  process.stdout.write(term(`${term(`[${barSymbol[0].repeat(filledWidth)}${term(' '.repeat(emptyWidth > 0 ? emptyWidth : 0), { color: 'default' })}]`, { color })} ${message}`, { color: processMessageColor }))
 }

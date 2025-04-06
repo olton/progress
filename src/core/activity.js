@@ -1,9 +1,8 @@
-import { clearLine, cursor, getCursorPos } from '../helpers/console.js'
 import ActivityOptions from '../options/activity.js'
 import process from 'node:process'
 import repeat from '../helpers/repeat.js'
 import { dots, moon, clock, earth } from '../helpers/frames.js'
-import colorDef, { color } from '../helpers/color.js'
+import { term, Cursor, Screen } from '@olton/terminal'
 
 const FRAMES = {
     dots,
@@ -22,7 +21,9 @@ export default class Activity {
         this.start = Date.now()
         this.index = 0
         this.interval = null
-        cursor( this.options.cursor )
+        if (this.options.cursor === false) {
+            Cursor.hide()
+        }
     }
     
     reset (options = {}) {
@@ -34,7 +35,7 @@ export default class Activity {
         const o = this.options
         if (msg) { o.message = msg }
         if (o.spaceBefore) { process.stdout.write(repeat('\n', this.options.spaceBefore)) }
-        const cur = await getCursorPos()
+        const cur = await Cursor.getPos()
         this.position = { ...cur }
         this.render()
         if (this.options.spaceAfter) {
@@ -60,7 +61,7 @@ export default class Activity {
         } = this.options
         
         if (this.position) {
-            process.stdout.cursorTo(+this.position.x - 1, +this.position.y - 1)
+            Cursor.to(+this.position.x - 1, +this.position.y - 1)
         }
 
         const frames = FRAMES[type] || FRAMES.dots
@@ -72,11 +73,9 @@ export default class Activity {
 
         const frame = frames[this.index]
 
-        const colors = colorDef({ bar: color, process: messageColor })
-
         process.stdout.write("\r")
-        process.stdout.write(colors.bar(`${frame} ${colors.process(message)}`))
-        process.stdout.clearLine(1)
+        process.stdout.write(term(`${frame} ${term(message, {color: messageColor})}`, {color}))
+        Screen.clearRight()
     }
     
     run (msg = '', timeout = 0) {
@@ -93,7 +92,7 @@ export default class Activity {
     stop (msg) {
         clearInterval(this.interval)
         this.interval = null
-        cursor(true)
+        Cursor.show()
         this.completeMessage(msg)
     }
 
@@ -109,7 +108,7 @@ export default class Activity {
 
         process.stdout.write('\r')
 
-        clearLine(process.stdout, 0)
-        process.stdout.write(color(completeMessageColor)(message))
+        Screen.clearLine()
+        process.stdout.write(term(message, {color: completeMessageColor}))
     }
 }
