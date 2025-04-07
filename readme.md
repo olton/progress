@@ -277,7 +277,8 @@ If you like this project, please consider supporting it by:
 + Star this repository on GitHub
 + Sponsor this project on GitHub Sponsors
 + **PayPal** to `serhii@pimenov.com.ua`.
-+ **Patreon** https://www.patreon.com/metroui
++ [**Patreon**](https://www.patreon.com/metroui)
++ [**Buy me a coffee**](https://buymeacoffee.com/pimenov)
 
 ---
 
