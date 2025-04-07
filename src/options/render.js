@@ -6,5 +6,11 @@ export default {
   rate: 0,
   completed: 0,
   total: 1,
+  color: 'whiteBright',
+  processMessage: '',
+  processMessageColor: 'gray',
+  type: 'dots',
   unitName: 'unit',
+  bar: '█',
+  empty: '░',
 }

@@ -3,7 +3,7 @@ export default {
   completed: 0,
   width: 30,
   mode: 'default', // default, dots, bar
-  completeMessageColor: 'green',
+  completeMessageColor: 'whiteBright',
   completeMessage: '',
   completeMessagePosition: 'default', // default, newline
   barColor: 'green',
@@ -14,5 +14,6 @@ export default {
   cursor: true,
   spaceBefore: 0,
   spaceAfter: 0,
-  barSymbol: '█',
+  bar: '█',
+  empty: '░',
 }

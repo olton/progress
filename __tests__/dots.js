@@ -1,11 +1,12 @@
 import { Progress } from '../src/index.js'
 
 const progress = new Progress({
-  total: 100,
+  total: 20,
   width: 20,
   mode: 'dots',
   completeMessage: 'Process completed in {{elapsed}}s',
   showCompleteMessage: true,
+  completeMessagePosition: 'newline',
   barColor: 'blue',
   processMessage: 'Lorem ipsum dollor sit amet, consectetur adipiscing elit. {{percent}}% completed',
   dotsType: 'dots',
@@ -14,15 +15,7 @@ const progress = new Progress({
   spaceAfter: 1,
 })
 
-console.log('Processing...')
-console.log('Processing...')
-
 await progress.init()
-
-console.log('Processing...')
-console.log('Processing...')
-console.log('Processing...')
-console.log('Processing...')
 
 for (let i = 0; i < 20; i++) {
   setTimeout(() => {

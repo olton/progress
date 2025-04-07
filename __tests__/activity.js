@@ -4,7 +4,7 @@ const activity = new Activity({
   color: '#fff',
   messageColor: 'yellow',
   type: 'dots',
-  completeMessage: 'Process completed in {{elapsed}}s',
+  completeMessage: '√ Process completed in {{elapsed}}s',
 })
 
 // for (let i = 0; i < 100; i++) {

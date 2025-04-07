@@ -1,6 +1,6 @@
 export default {
   type: 'dots', // dots, clock, earth, moon
-  cursor: true,
+  cursor: false,
   spaceBefore: 0,
   spaceAfter: 0,
   color: 'green',

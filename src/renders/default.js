@@ -1,5 +1,4 @@
 import RenderOptions from '../options/render.js'
-import process from 'node:process'
 import { term } from '@olton/terminal'
 
 export default function (state = {}) {
@@ -13,10 +12,14 @@ export default function (state = {}) {
     total,
     color = 'green',
     unitName = 'unit',
+    bar = '█',
+    empty = '░',
   } = Object.assign({}, RenderOptions, state)
 
-  process.stdout.write('\r')
-  process.stdout.write(term(`[${'█'.repeat(filledWidth)}${' '.repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `, {color}))
-  process.stdout.write(term(`(${completed}/${total}) `, {color: 'yellow'}))
-  process.stdout.write(term(`${elapsed}s elapsed, ${rate}s/${unitName}`, {color: 'gray'}))
+  const t = process.stdout
+  
+  t.write('\r')
+  t.write(term(`[${bar[0].repeat(filledWidth)}${empty[0].repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `, {color}))
+  t.write(term(`(${completed}/${total}) `, {color: 'yellow'}))
+  t.write(term(`${elapsed}s elapsed, ${rate}s/${unitName}`, {color: 'gray'}))
 }

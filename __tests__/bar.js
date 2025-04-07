@@ -9,7 +9,7 @@ const progress = new Progress({
   processMessageColor: 'yellow',
   completeMessage: 'Process completed in {{elapsed}}s',
   cursor: false,
-  barSymbol: '◼',
+  bar: '◼',
 })
 
 for (let i = 0; i < 100; i++) {

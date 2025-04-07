@@ -1,5 +1,4 @@
 import RenderOptions from '../options/render.js'
-import process from 'node:process'
 import { dots, clock, moon, earth, line } from "../helpers/frames.js"
 import { term, Screen } from '@olton/terminal'
 
@@ -33,7 +32,7 @@ export default function (state = {}) {
     index = 0
   }
 
-  const frame = frames[index]
+  const frame = completed >= total ? '√' : frames[index]
   const message = processMessage
     .replace(/{{percent}}/g, percent)
     .replace(/{{completed}}/g, completed)
@@ -41,10 +40,9 @@ export default function (state = {}) {
     .replace(/{{elapsed}}/g, elapsed)
     .replace(/{{rate}}/g, rate)
 
-  // const colors = colorDef({ bar: color, process: processMessageColor })
-
-  process.stdout.write("\r")
-  process.stdout.write(term(`${completed === total ? term('√', {color: 'green'}) : frame} ${term(message, {color: processMessageColor})} `, { color }))
+  const t = process.stdout
+  
+  t.write("\r")
+  t.write(term(`${frame} ${term(message, {color: processMessageColor})} `, { color }))
   Screen.clearRight()
-  // process.stdout.clearLine(1)
 }
