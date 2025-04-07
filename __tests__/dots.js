@@ -9,7 +9,7 @@ const progress = new Progress({
   completeMessagePosition: 'newline',
   barColor: 'blue',
   processMessage: 'Lorem ipsum dollor sit amet, consectetur adipiscing elit. {{percent}}% completed',
-  dotsType: 'dots',
+  dotsType: 'star',
   cursor: true,
   spaceBefore: 1,
   spaceAfter: 1,

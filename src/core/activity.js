@@ -1,6 +1,6 @@
 import ActivityOptions from '../options/activity.js'
 import repeat from '../helpers/repeat.js'
-import { dots, moon, clock, earth } from '../helpers/frames.js'
+import { dots, moon, clock, earth, line, windows } from '../helpers/frames.js'
 import { term, Cursor, Screen } from '@olton/terminal'
 
 const terminal = process.stdout
@@ -9,7 +9,9 @@ const FRAMES = {
     dots,
     clock,
     moon,
-    earth
+    earth,
+    line,
+    windows,
 }
 
 /**

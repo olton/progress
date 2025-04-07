@@ -11,6 +11,7 @@ export default function (state = {}) {
     completed,
     total,
     color = 'green',
+    backColor,
     unitName = 'unit',
     bar = '█',
     empty = '░',
@@ -19,7 +20,7 @@ export default function (state = {}) {
   const t = process.stdout
   
   t.write('\r')
-  t.write(term(`[${bar[0].repeat(filledWidth)}${empty[0].repeat(emptyWidth > 0 ? emptyWidth : 0)}] ${percent}% `, {color}))
+  t.write(term(`[${bar[0].repeat(filledWidth)}${term(empty[0].repeat(emptyWidth > 0 ? emptyWidth : 0), {color: backColor})}] ${percent}% `, {color}))
   t.write(term(`(${completed}/${total}) `, {color: 'yellow'}))
   t.write(term(`${elapsed}s elapsed, ${rate}s/${unitName}`, {color: 'gray'}))
 }

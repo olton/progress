@@ -7,6 +7,7 @@ export default {
   completeMessage: '',
   completeMessagePosition: 'default', // default, newline
   barColor: 'green',
+  backColor: 'gray',
   processMessage: '',
   processMessageColor: 'gray',
   dotsType: 'dots', // dots, clock, earth, moon

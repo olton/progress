@@ -1,5 +1,5 @@
 import RenderOptions from '../options/render.js'
-import { dots, clock, moon, earth, line } from "../helpers/frames.js"
+import { dots, clock, moon, earth, line, windows } from "../helpers/frames.js"
 import { term, Screen } from '@olton/terminal'
 
 const FRAMES = {
@@ -8,6 +8,7 @@ const FRAMES = {
   moon,
   earth,
   line, 
+  windows,
 }
 
 let index = 0

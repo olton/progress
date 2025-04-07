@@ -6,7 +6,7 @@ const progress = new Progress({
   mode: 'default',
   startMessageColor: 'whiteBright',
   completeMessage: 'Completed {{total}} tests in {{elapsed}}s\n',
-  barColor: 'blue',
+  barColor: '200',
   showCompleteMessage: true,
   unitName: 'test',
 })

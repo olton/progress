@@ -3,7 +3,7 @@ import { Activity } from '../src/index.js'
 const activity = new Activity({
   color: '#fff',
   messageColor: 'yellow',
-  type: 'dots',
+  type: 'windows',
   completeMessage: '√ Process completed in {{elapsed}}s',
 })
 

@@ -131,6 +131,7 @@ export default class Progress {
       completed: this.completed,
       total: this.options.total,
       color: this.options.barColor,
+      backColor: this.options.backColor,
       processMessage: this.options.processMessage,
       processMessageColor: this.options.processMessageColor,
       type: this.options.dotsType,

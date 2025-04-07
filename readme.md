@@ -68,6 +68,7 @@ const ProgressOptions = {
   completeMessage: '',
   completeMessagePosition: 'default', // default, newline
   barColor: 'green',
+  backColor: 'gray',
   processMessage: '',
   processMessageColor: 'gray',
   dotsType: 'dots', // dots, clock, earth, moon
@@ -76,6 +77,7 @@ const ProgressOptions = {
   spaceBefore: 0,
   spaceAfter: 0,
   bar: '█',
+  empty: '░',
 }
 ```
 
@@ -83,18 +85,21 @@ const ProgressOptions = {
 - `total`: Total number of operations. Default is `0`.
 - `completed`: Number of completed operations. Default is `0`.
 - `width`: Width of the progress bar. Default is `30`.
-- `mode`: Mode of the progress bar. Default is `default`. You can use `default`, `dots`, or `bar`.
+- `mode`: Mode of the progress bar: `default`, `dots`, or `bar`.
 - `completeMessageColor`: Color of the complete message. Default is `green`.
 - `completeMessage`: Message shown when the progress is completed. Default is `''`.
-- `completeMessagePosition`: Position of the complete message. Default is `default`. You can use `default` or `newline`.
+- `completeMessagePosition`: Position of the complete message: `default` or `newline`.
 - `barColor`: Color of the progress bar. Default is `green`.
+- `backColor`: Color of the empty part of the progress bar. Default is `gray`.
 - `processMessage`: Message shown when the progress is updated. Default is `''`.
 - `processMessageColor`: Color of the process message. Default is `gray`.
-- `dotsType`: Type of the dots. Default is `dots`. You can use `dots`, `clock`, `earth`, `moon`, `line`.
+- `dotsType`: Type of the dots. See `Dots Types` below. Default is `dots`.
 - `unitName`: Name of the unit. Default is `unit`.
 - `cursor`: Show cursor. Default is `true`.
 - `spaceBefore`: Space before the progress bar. Default is `0`.
 - `spaceAfter`: Space after the progress bar. Default is `0`.
+- `bar`: Character used for the progress bar. Default is `█`.
+- `empty`: Character used for the empty part of the progress bar. Default is `░`.
 
 ### completeMessage
 The message shown when the progress is completed. You can use the following replacers:
@@ -153,6 +158,10 @@ Also, you can use hex colors. For example: `#ff0000`.
 ```js
 ['|', '/', '─', '\\', '|', '/', '─', '\\', '|']
 ```
+`windows`: Shows a series of dots to indicate progress.
+```js
+['⢿', '⣻', '⣽', '⣾', '⣷', '⣯', '⣟', '⡿']
+```
 
 ## Activity
 
@@ -162,7 +171,7 @@ Use activity to show the progress of a task that is not a linear process. For ex
 
 ```js
 export default {
-  type: 'dots', // dots, clock, earth, moon
+  type: 'dots',
   cursor: true,
   spaceBefore: 0,
   spaceAfter: 0,
@@ -174,7 +183,7 @@ export default {
 ```
 
 #### Options Description
-- `type`: Type of the activity. Default is `dots`. You can use `dots`, `clock`, `earth`, `moon`, `line`.
+- `type`: Type of the activity. See `Dots Types` above. Default is `dots`.
 - `cursor`: Show cursor. Default is `true`.
 - `spaceBefore`: Space before the activity. Default is `0`.
 - `spaceAfter`: Space after the activity. Default is `0`.
@@ -185,7 +194,7 @@ export default {
 
 ### Usage 
 
-#### Craete activity
+#### Create activity
 
 ```js
 import { Activity } from "@olton/progress";
@@ -260,3 +269,16 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
+--- 
+## Support
+
+If you like this project, please consider supporting it by:
+
++ Star this repository on GitHub
++ Sponsor this project on GitHub Sponsors
++ **PayPal** to `serhii@pimenov.com.ua`.
++ **Patreon** https://www.patreon.com/metroui
+
+---
+
+Copyright (c) 2025 by [Serhii Pimenov](https://pimenov.com.ua)
