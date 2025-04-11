@@ -4,9 +4,11 @@ export default {
   spaceBefore: 0,
   spaceAfter: 0,
   color: 'green',
+  message: '',
   messageColor: 'white',
   completeMessage: '',
   completeMessageColor: 'whiteBright',
+  completeMessagePosition: 'default',
 }
 
 

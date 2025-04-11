@@ -1,7 +1,8 @@
 import RenderOptions from '../options/render.js'
 import { term } from '@olton/terminal'
 
-export default function (state = {}) {
+
+export default function (terminal, state = {}) {
   const {
     percent,
     filledWidth,
@@ -11,20 +12,18 @@ export default function (state = {}) {
     completed,
     total,
     color = 'green',
-    processMessage,
-    processMessageColor = 'gray',
+    message,
+    messageColor = 'gray',
     bar = '◼',
   } = Object.assign({}, RenderOptions, state)
-
-  const message = processMessage
+  
+  const msg = message
     .replace(/{{percent}}/g, percent)
     .replace(/{{completed}}/g, completed)
     .replace(/{{total}}/g, total)
     .replace(/{{elapsed}}/g, elapsed)
     .replace(/{{rate}}/g, rate)
 
-  const t = process.stdout
-  
-  t.write('\r')
-  t.write(term(`${term(`[${bar[0].repeat(filledWidth)}${term(' '.repeat(emptyWidth > 0 ? emptyWidth : 0), { color: 'default' })}]`, { color })} ${message}`, { color: processMessageColor }))
+  terminal.write('\r')
+  terminal.write(term(`${term(`[${bar[0].repeat(filledWidth)}${term(' '.repeat(emptyWidth > 0 ? emptyWidth : 0), { color: 'default' })}]`, { color })} ${msg}`, { color: messageColor }))
 }

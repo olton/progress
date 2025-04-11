@@ -13,7 +13,7 @@ const FRAMES = {
 
 let index = 0
 
-export default function (state = {}) {
+export default function (terminal, state = {}) {
   const {
     percent,
     elapsed,
@@ -21,8 +21,8 @@ export default function (state = {}) {
     completed,
     total,
     color = 'green',
-    processMessage,
-    processMessageColor = 'gray',
+    message,
+    messageColor = 'gray',
     type = 'dots'
   } = Object.assign({}, RenderOptions, state)
 
@@ -34,16 +34,14 @@ export default function (state = {}) {
   }
 
   const frame = completed >= total ? '√' : frames[index]
-  const message = processMessage
+  const msg = message
     .replace(/{{percent}}/g, percent)
     .replace(/{{completed}}/g, completed)
     .replace(/{{total}}/g, total)
     .replace(/{{elapsed}}/g, elapsed)
     .replace(/{{rate}}/g, rate)
 
-  const t = process.stdout
-  
-  t.write("\r")
-  t.write(term(`${frame} ${term(message, {color: processMessageColor})} `, { color }))
+  terminal.write("\r")
+  terminal.write(term(`${frame} ${term(msg, {color: messageColor})} `, { color }))
   Screen.clearRight()
 }

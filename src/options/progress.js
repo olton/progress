@@ -8,8 +8,8 @@ export default {
   completeMessagePosition: 'default', // default, newline
   barColor: 'green',
   backColor: 'gray',
-  processMessage: '',
-  processMessageColor: 'gray',
+  message: '',
+  messageColor: 'gray',
   dotsType: 'dots', // dots, clock, earth, moon
   unitName: 'unit',
   cursor: true,

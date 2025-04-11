@@ -4,10 +4,8 @@ const progress = new Progress({
   total: 100,
   width: 20,
   mode: 'default',
-  startMessageColor: 'whiteBright',
-  completeMessage: 'Completed {{total}} tests in {{elapsed}}s\n',
+  completeMessage: 'Completed tests in {{elapsed}}s\n',
   barColor: '200',
-  showCompleteMessage: true,
   unitName: 'test',
 })
 
@@ -22,10 +20,8 @@ setTimeout(() => {
     total: 50,
     width: 30,
     mode: 'default',
-    startMessageColor: 'whiteBright',
-    completeMessage: 'Completed {{total}} tests in {{elapsed}}s\n',
+    completeMessage: 'Completed tests in {{elapsed}}s\n',
     barColor: 'green',
-    showCompleteMessage: true,
   })
 
   for (let i = 0; i < 50; i++) {
