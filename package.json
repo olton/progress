@@ -1,6 +1,6 @@
 {
   "name": "@olton/progress",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Progress bar for JS/TS CLI (Node, Deno, Bun)",
   "main": "dist/progress.js",
   "types": "types/index.d.ts",
@@ -14,6 +14,7 @@
   },
   "files": [
     "dist",
+    "types",
     "README.md",
     "LICENSE"
   ],
@@ -40,7 +41,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@olton/terminal": "^0.4.0"
+    "@olton/terminal": "^0.4.1"
   },
   "devDependencies": {
     "@olton/esbuild-plugin-progress": "^0.3.0",
