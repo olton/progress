@@ -40,11 +40,11 @@ export default class Base {
   }
   
   /**
-   * Initializes the Activity instance, displaying the loading animation and save cursor position.
+   * Save Activity position.
    * @param msg
    * @returns {void}
    */
-  init (msg = '') {
+  save (msg = '') {
     this.initied = true
     const o = this.options
     if (msg) { o.message = msg }
@@ -100,8 +100,7 @@ export default class Base {
       .replace(/{{elapsed}}/g, elapsed)
 
     this.write('\r')
-
+    Screen.clearLine()
     this.write(term(message, {color: completeMessageColor}))
-    Screen.clearRight()
   }
 }

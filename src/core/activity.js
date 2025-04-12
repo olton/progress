@@ -38,7 +38,7 @@ export default class Activity extends Base {
         } = this.options
 
         if (!this.initied) {
-            this.init(message)
+            this.save(message)
         }
 
         if (this.position) {

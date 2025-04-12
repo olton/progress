@@ -80,10 +80,10 @@ declare module '@olton/progress' {
         constructor(options: ActivityOptionsInterface);
 
         /**
-         * Initialize Activity on terminal in position
+         * Save Activity position
          * @param msg - message to display
          */
-        init(msg?: string): void;
+        save(msg?: string): void;
         /**
          * Run Activity
          * @param msg - message to display
@@ -200,9 +200,9 @@ declare module '@olton/progress' {
          */
         reset(options?: ProgressOptionsInterface): void;
         /**
-         * Initialize Progress bar on terminal in position
+         * Save Progress bar position
          */
-        init(msg?: string): void;
+        save(msg?: string): void;
         /**
          * Process step Progress bar
          */

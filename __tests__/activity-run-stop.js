@@ -12,7 +12,7 @@ console.log('Processing...1')
 console.log('Processing...2')
 console.log('Processing...3')
 
-activity.init()
+activity.save()
 
 console.log('Processing...1')
 console.log('Processing...2')

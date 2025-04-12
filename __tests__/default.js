@@ -16,7 +16,7 @@ for (let i = 0; i < 100; i++) {
 }
 
 setTimeout(() => {
-  progress.init()
+  progress.save()
   progress.reset({
     total: 50,
     width: 30,

@@ -78,7 +78,7 @@ export default class Progress extends Base {
     const render = RENDERS[this.options.mode] || defaultRender
 
     if (!this.initied) {
-      this.init(state.message)
+      this.save(state.message)
     }
     
     if (this.position) {
