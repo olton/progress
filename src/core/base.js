@@ -5,6 +5,7 @@ export default class Base {
   terminal = process.stdout
   options = {}
   position = null
+  initied = false
   
   constructor (defaults, options) {
     this.options = Object.assign({}, defaults, options)
@@ -30,6 +31,10 @@ export default class Base {
     this.setup()
   }
 
+  /**
+   * Writes a message to the terminal.
+   * @param msg
+   */
   write (msg) {
     this.terminal.write(msg)
   }
@@ -37,26 +42,31 @@ export default class Base {
   /**
    * Initializes the Activity instance, displaying the loading animation and save cursor position.
    * @param msg
-   * @returns {Promise<void>}
+   * @returns {void}
    */
-  async init (msg = '') {
+  init (msg = '') {
+    this.initied = true
     const o = this.options
     if (msg) { o.message = msg }
     if (o.spaceBefore) { this.write(repeat('\n', this.options.spaceBefore)) }
-    const cur = await Cursor.getPos()
-    this.position = { ...cur }
-    this.render()
+    Cursor.save()
     this.write(repeat('\n', this.options.spaceAfter + 1))
   }
 
   /**
    * Sets the cursor position to the specified coordinates.
-   * @param x
-   * @param y
    */
-  here (x = 0, y = 0) {
-    this.position = { x, y }
-    Cursor.to(x, y)
+  async here () {
+    const o = this.options
+
+    if (o.spaceBefore) { 
+      this.write(repeat('\n', this.options.spaceBefore)) 
+    }
+
+    const pos = await Cursor.getPos()
+    this.position = { ...pos }
+
+    this.write(repeat('\n', this.options.spaceAfter + 1))
   }
   
   /**
@@ -68,7 +78,6 @@ export default class Base {
     if (msg) {
       this.options.message = msg
     }
-    // console.log(this.options.message)
     this.render()
   }
 
@@ -92,7 +101,7 @@ export default class Base {
 
     this.write('\r')
 
-    Screen.clearLine()
     this.write(term(message, {color: completeMessageColor}))
+    Screen.clearRight()
   }
 }

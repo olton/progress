@@ -36,9 +36,15 @@ export default class Activity extends Base {
             messageColor = 'white',
             type = 'dots',
         } = this.options
-        
+
+        if (!this.initied) {
+            this.init(message)
+        }
+
         if (this.position) {
-            Cursor.to(+this.position.x - 1, +this.position.y - 1)
+            Cursor.to(this.position.x, this.position.y)
+        } else {
+            Cursor.restore()
         }
 
         const frames = FRAMES[type] || FRAMES.dots

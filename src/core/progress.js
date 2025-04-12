@@ -3,11 +3,8 @@ import RenderOptions from '../options/render.js'
 import defaultRender from '../renders/default.js'
 import dotsRender from '../renders/dots.js'
 import barRender from '../renders/bar.js'
-import repeat from '../helpers/repeat.js'
 import { Cursor, term, Screen } from "@olton/terminal"
 import Base from './base.js'
-
-const terminal = process.stdout
 
 const RENDERS = {
   default: defaultRender,
@@ -80,8 +77,14 @@ export default class Progress extends Base {
     const state = this.calculate()
     const render = RENDERS[this.options.mode] || defaultRender
 
+    if (!this.initied) {
+      this.init(state.message)
+    }
+    
     if (this.position) {
-      Cursor.to(+this.position.x - 1, +this.position.y - 1)
+      Cursor.to(this.position.x, this.position.y)
+    } else {
+      Cursor.restore()
     }
     
     render(this.terminal, state)

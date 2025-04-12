@@ -1,5 +1,5 @@
 import RenderOptions from '../options/render.js'
-import { term } from '@olton/terminal'
+import { term, Screen } from '@olton/terminal'
 
 
 export default function (terminal, state = {}) {
@@ -25,5 +25,6 @@ export default function (terminal, state = {}) {
     .replace(/{{rate}}/g, rate)
 
   terminal.write('\r')
+  Screen.clearLine()
   terminal.write(term(`${term(`[${bar[0].repeat(filledWidth)}${term(' '.repeat(emptyWidth > 0 ? emptyWidth : 0), { color: 'default' })}]`, { color })} ${msg}`, { color: messageColor }))
 }

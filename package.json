@@ -15,7 +15,8 @@
   "files": [
     "dist",
     "types",
-    "README.md",
+    "readme.md",
+    "progress.js",
     "LICENSE"
   ],
   "scripts": {

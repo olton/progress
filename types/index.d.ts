@@ -83,7 +83,7 @@ declare module '@olton/progress' {
          * Initialize Activity on terminal in position
          * @param msg - message to display
          */
-        init(msg?: string): Promise<void>;
+        init(msg?: string): void;
         /**
          * Run Activity
          * @param msg - message to display
@@ -106,9 +106,9 @@ declare module '@olton/progress' {
          */
         process(msg?: string): void;
         /**
-         * Put Progress bar to position
+         * Save Activity position here
          */
-        here(x: number, y: number): void;
+        here(): Promise<void>;
     }
 
     /**
@@ -202,14 +202,14 @@ declare module '@olton/progress' {
         /**
          * Initialize Progress bar on terminal in position
          */
-        init(msg?: string): Promise<void>;
+        init(msg?: string): void;
         /**
          * Process step Progress bar
          */
         process(step?: number, msg?: string): void;
         /**
-         * Put Progress bar to position
+         * Save Progress bar position here
          */
-        here(x: number, y: number): void;
+        here(): Promise<void>;
     }
 }

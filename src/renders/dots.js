@@ -42,6 +42,6 @@ export default function (terminal, state = {}) {
     .replace(/{{rate}}/g, rate)
 
   terminal.write("\r")
+  Screen.clearLine()
   terminal.write(term(`${frame} ${term(msg, {color: messageColor})} `, { color }))
-  Screen.clearRight()
 }

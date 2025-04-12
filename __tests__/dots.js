@@ -16,7 +16,7 @@ const progress = new Progress({
   spaceAfter: 1,
 })
 
-await progress.init()
+await progress.here()
 
 for (let i = 0; i < total; i++) {
   setTimeout(() => {

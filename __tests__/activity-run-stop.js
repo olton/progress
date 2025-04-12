@@ -8,9 +8,17 @@ const activity = new Activity({
   completeMessage: '√ Process completed in {{elapsed}}s',
 })
 
-await activity.init()
-activity.run("Processing...")
+console.log('Processing...1')
 console.log('Processing...2')
+console.log('Processing...3')
+
+activity.init()
+
+console.log('Processing...1')
+console.log('Processing...2')
+console.log('Processing...3')
+
+activity.run("Processing...")
 
 setTimeout(() => {
   activity.stop()
