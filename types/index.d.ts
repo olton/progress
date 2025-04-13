@@ -8,6 +8,7 @@ declare module '@olton/progress' {
         EARTH = 'earth',
         MOON = 'moon',
         LINE = 'line',
+        WINDOWS = 'windows',
     }
 
     /**
@@ -81,6 +82,7 @@ declare module '@olton/progress' {
 
         /**
          * Save Activity position
+         * This method used an ESCAPE sequence to save position
          * @param msg - message to display
          */
         save(msg?: string): void;
@@ -107,8 +109,9 @@ declare module '@olton/progress' {
         process(msg?: string): void;
         /**
          * Save Activity position here
+         * This method used an async function Cursor.getPos() to save position
          */
-        here(): Promise<void>;
+        here(): Promise<{ x: number, y: number }>;
     }
 
     /**
@@ -201,6 +204,7 @@ declare module '@olton/progress' {
         reset(options?: ProgressOptionsInterface): void;
         /**
          * Save Progress bar position
+         * This method used an ESCAPE sequence to save position
          */
         save(msg?: string): void;
         /**
@@ -209,7 +213,8 @@ declare module '@olton/progress' {
         process(step?: number, msg?: string): void;
         /**
          * Save Progress bar position here
+         * This method used an async function Cursor.getPos() to save position
          */
-        here(): Promise<void>;
+        here(): Promise<{ x: number, y: number }>;
     }
 }

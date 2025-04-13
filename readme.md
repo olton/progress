@@ -41,7 +41,7 @@ for (let i = 0; i < 100; i++) {
 
 ### process()
 
-The `process(increment, processMessage)` method updates the progress bar. You can call it multiple times to update the progress.
+The `process(processMessage, increment)` method updates the progress bar. You can call it multiple times to update the progress.
 
 ```js
 progress.process();
@@ -103,7 +103,6 @@ const ProgressOptions = {
 
 ### completeMessage
 The message shown when the progress is completed. You can use the following replacers:
-- `{{total}}`: Total number of operations.
 - `{{elapsed}}`: Elapsed time in seconds.
 
 For example: `Completed {{total}} operations in {{elapsed}}s`.
@@ -176,6 +175,7 @@ export default {
   spaceBefore: 0,
   spaceAfter: 0,
   color: 'green',
+  message: '',
   messageColor: 'white',
   completeMessage: '',
   completeMessageColor: 'whiteBright',
@@ -188,6 +188,7 @@ export default {
 - `spaceBefore`: Space before the activity. Default is `0`.
 - `spaceAfter`: Space after the activity. Default is `0`.
 - `color`: Color of the activity. Default is `green`.
+- `message`: The process message. Default is `''`.
 - `messageColor`: Color of the message. Default is `white`.
 - `completeMessage`: Message shown when the activity is completed. Default is `''`.
 - `completeMessageColor`: Color of the complete message. Default is `whiteBright`.
@@ -247,17 +248,24 @@ setTimeout(() => {
 }, 5000)
 ```
 
-## Method Init()
-The `init()` method initializes the progress or activity on specified position in the terminal. 
-This method is async and returns a promise. 
+## Method save()
+The `save()` method save the position of progress or activity. 
+The saved position will be restored when you call `process()` method.
 
 ```js
 const progress = new Progress({...});
-await progress.init()
+progress.save()
 ```
 
-When you call `process()` or `activity.run()` the progress or activity will be shown on the initialed position in the terminal.
-This allows you to use `console.log` (or other console methods) in the execution process, the progress will be displayed at the saved position.
+## Method here()
+The `here()` method save the position of progress or activity using async function `Cursor.getPos()`.
+This function returns a promise with the position object `{ x, y }`. 
+You can use this value to output additional information to the terminal when the progress or activity is processed.
+
+```js
+const progress = new Progress({...});
+await progress.here()
+```
 
 ---
 ## License

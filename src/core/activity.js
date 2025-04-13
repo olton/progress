@@ -88,3 +88,5 @@ export default class Activity extends Base {
         this.completeMessage(msg)
     }
 }
+
+export const activity = (options = {}) => new Activity(options)

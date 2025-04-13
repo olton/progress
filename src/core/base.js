@@ -67,6 +67,8 @@ export default class Base {
     this.position = { ...pos }
 
     this.write(repeat('\n', this.options.spaceAfter + 1))
+    
+    return this.position
   }
   
   /**

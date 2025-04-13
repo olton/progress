@@ -3,7 +3,7 @@ import RenderOptions from '../options/render.js'
 import defaultRender from '../renders/default.js'
 import dotsRender from '../renders/dots.js'
 import barRender from '../renders/bar.js'
-import { Cursor, term, Screen } from "@olton/terminal"
+import { Cursor } from '@olton/terminal'
 import Base from './base.js'
 
 const RENDERS = {
@@ -94,3 +94,5 @@ export default class Progress extends Base {
     }
   }
 }
+
+export const progress = (options = {}) => new Progress(options)

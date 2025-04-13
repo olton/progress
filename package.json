@@ -42,7 +42,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@olton/terminal": "^0.4.1"
+    "@olton/terminal": "^0.5.0"
   },
   "devDependencies": {
     "@olton/esbuild-plugin-progress": "^0.3.0",
