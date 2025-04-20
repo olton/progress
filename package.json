@@ -16,7 +16,7 @@
     "dist",
     "types",
     "readme.md",
-    "progress.js",
+    "progress.gif",
     "LICENSE"
   ],
   "scripts": {
@@ -42,7 +42,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@olton/terminal": "^0.5.0"
+    "@olton/terminal": "^0.5.1"
   },
   "devDependencies": {
     "@olton/esbuild-plugin-progress": "^0.3.0",
