@@ -1,6 +1,6 @@
 {
   "name": "@olton/progress",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "description": "Progress bar for JS/TS CLI (Node, Deno, Bun)",
   "main": "dist/progress.js",
   "types": "types/index.d.ts",
@@ -23,7 +23,8 @@
     "clean": "shx rm -rf dist/* lib/*",
     "build": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=production node build.js",
     "dev": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=development node build.js",
-    "pub": "npm run build && npm publish --access public"
+    "pub": "npm run build && npm publish --access public",
+    "test": "latte"
   },
   "keywords": [
     "javascript",
@@ -46,8 +47,9 @@
   },
   "devDependencies": {
     "@olton/esbuild-plugin-progress": "^0.3.0",
+    "@olton/latte": "^0.16.0",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.25.2",
+    "esbuild": "^0.25.4",
     "esbuild-plugin-replace": "^1.4.0",
     "shx": "^0.4.0"
   }
