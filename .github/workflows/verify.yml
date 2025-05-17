@@ -6,8 +6,12 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Test library
     runs-on: ubuntu-latest
+    env:
+      CI: true
+      TERM: dumb
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
