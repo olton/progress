@@ -20,7 +20,7 @@ const options = {
   entryPoints: ['./src/index.js'],
   outfile: './dist/progress.js',
   bundle: true,
-  minify: production,
+  minify: false,
   sourcemap: false,
   format: 'esm',
   banner: {
