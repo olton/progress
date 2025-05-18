@@ -24,7 +24,7 @@
     "build": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=production node build.js",
     "dev": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=development node build.js",
     "pub": "npm run build && npm publish --access public",
-    "test": "latte --progress=none"
+    "test": "latte --progress=default"
   },
   "keywords": [
     "javascript",
